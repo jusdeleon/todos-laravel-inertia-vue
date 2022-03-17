@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
 class TodoController extends Controller
@@ -30,6 +31,8 @@ class TodoController extends Controller
 
     public function update(Request $request, Todo $todo)
     {
+        $this->gate($todo);
+
         $request->validate(['completed' => 'required|boolean']);
 
         $todo->update(['completed' => $request->completed]);
@@ -39,8 +42,15 @@ class TodoController extends Controller
 
     public function destroy(Todo $todo)
     {
+        $this->gate($todo);
+
         $todo->delete();
 
         return back();
+    }
+
+    private function gate(Todo $todo)
+    {
+        Gate::allowIf(fn ($user) => $user->id === $todo->user_id);
     }
 }
