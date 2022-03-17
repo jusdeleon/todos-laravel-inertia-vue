@@ -61,8 +61,8 @@ To get the app up and running, follow the steps below
 2. Copy the contents of the `env.example` to a new file named `.env` in the same directory. Fill out corresponding values.
 3. Run all of these commands in the root directory of the project in order:
    ```sh
-   php artisan key:generate
    composer install
+   php artisan key:generate
    php artisan migrate
    npm install
    npm run dev
