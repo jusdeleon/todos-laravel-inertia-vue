@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TodoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +28,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::controller(TodoController::class)->prefix('todos')->as('todos.')->middleware(['auth', 'verified'])->group(function () {
+   Route::get('', 'index')->name('index');
+   Route::post('', 'store')->name('store');
+   Route::put('{todo}', 'update')->name('update');
+   Route::delete('{todo}', 'destroy')->name('destroy');
+});
 
 require __DIR__.'/auth.php';
