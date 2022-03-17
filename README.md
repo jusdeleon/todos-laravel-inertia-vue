@@ -3,7 +3,7 @@
 <div align="center">
     <h3 align="center">Todos</h3>
     <p align="center">
-    <a href="https://github.com/jusdeleon/todos-laravel-inertia-vue">View Demo</a>
+    <a href="https://todos-laravel-inertia-vue.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/jusdeleon/todos-laravel-inertia-vue/issues">Report Bug</a>
     ·
